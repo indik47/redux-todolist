@@ -12,7 +12,7 @@ class TaskCards extends Component {
 
         const { onBtnClick } = this;
 
-        if (!tasks.length) { return null }
+        if (!tasks.length) { return null; }
 
         return (
             <div>{
@@ -21,6 +21,7 @@ class TaskCards extends Component {
                     <h3>Task: </h3>
                     <p>{task.text}</p>
                     <button data-id={task.id} onClick={e => onBtnClick(e)}>del</button>
+                    <button data-id={task.id} onClick={e => onBtnClick(e)}>edit</button>
                 </div>
             })
             }

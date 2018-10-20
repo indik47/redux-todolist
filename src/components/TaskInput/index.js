@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {addTask} from '../../store/actions/addTask';
-import {deleteTask} from '../../store/actions/deleteTask';
+
+import {mapStateToProps, mapDispatchToProps} from './redux';
 import TaskCards from '../TaskCards';
 
 class TaskInput extends Component {
 
     state = {
         task: '',
-    }
+    };
 
     addTask = e => {
         const data = e.target.value;
@@ -17,12 +17,14 @@ class TaskInput extends Component {
             ...this.state,
             task: data,
         })
-    }
+    };
 
     onBtnClick = () => {
         const { task } = this.state;
+        if (!task) { return; }
         this.props.addTaskToState(task);
-    }
+        this.setState({task:''})
+    };
 
     render() {
         const { task } = this.state;
@@ -42,19 +44,6 @@ class TaskInput extends Component {
 
             </div>
         )
-    }
-}
-
-const mapStateToProps = store => {
-    return {
-        allTasks: store.tasks,
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        addTaskToState: task => dispatch( addTask(task) ),
-        deleteTask: id => dispatch ( deleteTask(id) ),
     }
 }
 

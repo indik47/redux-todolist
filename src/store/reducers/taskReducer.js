@@ -10,13 +10,13 @@ export default function (state = [], action) {
                 }, ...state];
             }
             case DELETE_TASK: {
-                const copy = JSON.parse(JSON.stringify(state));
+                const copy = [...state];
 
                 const filtered = copy.filter( task => {
-                    return task.id !== action.payload
-                })
+                    return task.id !== Number(action.payload)
+                });
 
-                return {...state, filtered}
+                return filtered
             }
 
             default: return state;
